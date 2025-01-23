@@ -30,7 +30,7 @@ Although the service processes images and calculates their perimeters, the image
 3. Run:
    ```bash
    go mod download
-   go mod tidy    # Ensure dependencies are correctly set up
+   go mod tidy    
    go run cmd/server/main.go
    ```
 
