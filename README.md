@@ -96,6 +96,50 @@ curl "http://localhost:8080/api/status?jobid=<job_id>"
 
 Replace `<job_id>` with the actual job ID you received from the `SubmitJob` endpoint.
 
+### Testing on Deployed EC2
+
+For testing purposes, you can also test the API on the EC2 instance deployed for this service:
+
+**Deployed EC2 URL for testing:**  
+`http://13.60.41.36:8080`
+
+You can test the same endpoints as listed above (submit a job and check job status) using this URL in place of `localhost`.
+
+#### Submit a Job on EC2:
+
+```bash
+curl -X POST http://13.60.41.36:8080/api/submit \
+  -H "Content-Type: application/json" \
+  -d '{
+    "count": 2,
+    "visits": [
+      {
+        "store_id": "S00339218",
+        "image_url": [
+          "https://www.gstatic.com/webp/gallery/2.jpg",
+          "https://www.gstatic.com/webp/gallery/3.jpg"
+        ],
+        "visit_time": "2023-12-20T10:00:00Z"
+      },
+      {
+        "store_id": "S01408764",
+        "image_url": [
+          "https://www.gstatic.com/webp/gallery/3.jpg"
+        ],
+        "visit_time": "2023-12-20T11:00:00Z"
+      }
+    ]
+  }'
+```
+
+#### Check Job Status on EC2:
+
+```bash
+curl "http://13.60.41.36:8080/api/status?jobid=<job_id>"
+```
+
+Replace `<job_id>` with the actual job ID you received from the `SubmitJob` endpoint.
+
 ## Development Environment
 
 - Go 1.21
