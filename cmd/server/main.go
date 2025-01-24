@@ -22,6 +22,8 @@ func main() {
 	r.HandleFunc("/api/submit", handler.SubmitJob).Methods("POST")
 	r.HandleFunc("/api/status", handler.GetJobStatus).Methods("GET")
 
+	corsRouter := withCORS(r)
+
 	log.Println("Server starting on :8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
